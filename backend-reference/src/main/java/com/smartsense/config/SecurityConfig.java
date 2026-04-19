@@ -19,15 +19,19 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.context.annotation.Profile;
 
 /**
- * Security Configuration - JWT and Role-Based Access Control
+ * Production Security Configuration - JWT and Role-Based Access Control
  * Configures Spring Security with JWT authentication
  * Enables method-level security with @PreAuthorize
+ * 
+ * For development with security disabled, use SecurityConfigDev with spring.profiles.active=dev
  */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
+@Profile("!dev")  // Active when dev profile is NOT active
 public class SecurityConfig {
 
     @Autowired
